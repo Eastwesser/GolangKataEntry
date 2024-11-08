@@ -2,17 +2,22 @@ package fundamentials
 
 import "fmt"
 
-func loopMe(a int, b int) int {
-	a := fmt.Scanln("Please enter a number")
-	b := fmt.Scanln("Please enter the second number")
-	for i := 0; i < 10; i++ {
-		fmt.Println("loop me")
+func loopMe(a, b int) int {
+	for i := a; i < b; i++ {
+		res = enumerate(a, b)
+		fmt.Println("The numbers between", {a}, "and", {b} are: {res})
 	}
 }
 
-func main() {
-	fmt.Println(loopMe(a, b))
+func mainLoop() {
+	var a, b int
+	fmt.Scanln("Please enter a number": &a)
+	fmt.Scanln("Please enter the second number": &b)
+	result := loopMe(a, b)
+	fmt.Println(result)
 }
 
-// пишем функцию loopMe(), которая принимает на вход два числа, сначала одно, потом энтер, второе, и пихает их в функцию
-// main(), которая берет диапазон и считает все числа между ними
+// пишем функцию loopMe(), которая принимает на вход два числа (с новой строки),
+// сначала одно, потом энтер, второе, и пихает их в функцию
+// main(), которая берет диапазон между ними и считает все числа между ними,
+// выводит все числа, их сумму, разность, умножение и деление
