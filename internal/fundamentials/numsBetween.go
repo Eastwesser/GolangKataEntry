@@ -5,17 +5,14 @@ import (
 	"strconv"
 )
 
-// Функция, возвращающая строку с числами между a и b
 func betweenNums(a, b int) string {
 	var stringOfNumbers string
 
-	// Если a больше b, меняем их местами
 	if a > b {
 		a, b = b, a
 	}
 
 	for i := a + 1; i < b; i++ {
-		// Преобразуем число в строку и добавляем к общей строке
 		stringOfNumbers += strconv.Itoa(i) + " "
 	}
 
