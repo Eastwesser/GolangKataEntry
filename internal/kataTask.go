@@ -27,3 +27,17 @@ func main() {
 		text.textModifier()
 	}
 }
+
+// TASK: USE THE FOLLOWING IMPORTS ONLY, master this package "strings"
+
+/*
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+	"unicode"
+)
+*/
