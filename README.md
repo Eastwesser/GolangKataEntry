@@ -98,3 +98,8 @@ What we expect:
 Я люблю голанг всем сердцем!
 ```
 
+## Запуск:
+
+```text
+go run cmd/main.go
+```

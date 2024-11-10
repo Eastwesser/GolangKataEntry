@@ -1,8 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"GolangEntryTest/internal/fundamentals"
+	"GolangEntryTest/internal/katatask"
+	"fmt"
+)
 
-// this package just runs the whole project with all packages
 func main() {
-	fmt.Println("Hello World")
+	fmt.Println("Запускаем примеры:")
+
+	// Вызов примеров из fundamentals
+	fundamentals.Aryth()
+
+	// Вызов текстового модификатора из kataTask
+	katatask.RunTextModifier()
 }
