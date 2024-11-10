@@ -1,17 +1,67 @@
-package internal
+package main
 
 import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
+	"unicode"
 )
 
 type Text struct {
 	Content string
 }
 
+//func (t *Text) textModifier() {
+//	fmt.Println(t.Content) // We have to work out this method
+//	textMod := strings.ReplaceAll(t.Content, "\n", " ")
+//	t.Content = strings.Join(strings.Fields(textMod), " ")
+//	for i := len(textMod) - 1; i >= 0; i-- {
+//		// if '-' in i {
+//		if textMod[i] == '-' {
+//			fmt.swap([1] with [2])
+//		} else if '+' in i {
+//			// fmt.ReplaceAll("+", "!")
+//			textMod := strings.ReplaceAll(textMod, "+", "!")
+//		} else {
+//			for num in len(textMod ) {
+//				fmt.unicode.IsDigit(Checksum)
+//
+//				//for num := 0; num < len(textMod); num++ {
+//				//	// Действия с каждым символом
+//				//}
+//			}
+//		}
+//	}
+//	return strings.Fields(strings.Join(textMod))
+//	if unicode.IsDigit(rune(textMod[num])) {
+//		// Действия для цифр
+//	}
+//}
+
 func (t *Text) textModifier() {
-	fmt.Println(t.Content) // We have to work out this method
+	fmt.Println("Original Content:", t.Content)
+
+	// Заменяем все переносы строк пробелами
+	textMod := strings.ReplaceAll(t.Content, "\n", " ")
+
+	// Проходим по каждому символу строки
+	for i := 0; i < len(textMod); i++ {
+		switch textMod[i] {
+		case '-':
+			// Обработка символа '-'
+		case '+':
+			textMod = strings.ReplaceAll(textMod, "+", "!")
+		default:
+			if unicode.IsDigit(rune(textMod[i])) {
+				// Действия, если символ является цифрой
+			}
+		}
+	}
+
+	// Преобразуем строку в массив слов и соединяем обратно с пробелами
+	t.Content = strings.Join(strings.Fields(textMod), " ")
+	fmt.Println("Modified Content:", t.Content)
 }
 
 func main() {
@@ -27,17 +77,3 @@ func main() {
 		text.textModifier()
 	}
 }
-
-// TASK: USE THE FOLLOWING IMPORTS ONLY, master this package "strings"
-
-/*
-package main
-
-import (
-	"bufio"
-	"fmt"
-	"os"
-	"strings"
-	"unicode"
-)
-*/
