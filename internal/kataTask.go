@@ -1,4 +1,4 @@
-package katatask
+package kataTask
 
 import (
 	"bufio"
@@ -13,9 +13,9 @@ type Text struct {
 }
 
 func (t *Text) TextModifier() {
-	fmt.Println("Original Content:", t.Content)
-	textMod := strings.ReplaceAll(t.Content, "\n", " ")
+	fmt.Println("Исходное содержание:", t.Content)
 
+	textMod := strings.ReplaceAll(t.Content, "\n", " ")
 	for i := 0; i < len(textMod); i++ {
 		switch textMod[i] {
 		case '-':
@@ -24,21 +24,20 @@ func (t *Text) TextModifier() {
 			textMod = strings.ReplaceAll(textMod, "+", "!")
 		default:
 			if unicode.IsDigit(rune(textMod[i])) {
-				// Действия, если символ является цифрой
+				// Действия для цифр
 			}
 		}
 	}
 
 	t.Content = strings.Join(strings.Fields(textMod), " ")
-	fmt.Println("Modified Content:", t.Content)
+	fmt.Println("Модифицированное содержание:", t.Content)
 }
 
-func RunTextModifier() {
+func InputAndModifyText() {
 	text := &Text{}
 	scanner := bufio.NewScanner(os.Stdin)
 
-	fmt.Print("Enter text: ")
-
+	fmt.Print("Введите текст: ")
 	for scanner.Scan() {
 		text.Content = scanner.Text()
 		text.TextModifier()

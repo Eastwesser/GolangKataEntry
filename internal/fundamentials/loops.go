@@ -2,19 +2,25 @@ package fundamentials
 
 import "fmt"
 
-func loopMe(a, b int) int {
-	for i := a; i < b; i++ {
-		res = enumerate(a, b)
-		fmt.Println("The numbers between", {a}, "and", {b} are: {res})
+func LoopMe(a, b int) string {
+	if a > b {
+		a, b = b, a
 	}
+	var res string
+	for i := a; i <= b; i++ {
+		res += fmt.Sprintf("%d ", i)
+	}
+	return res
 }
 
-func mainLoop() {
+func MainLoop() {
 	var a, b int
-	fmt.Scanln("Please enter a number": &a)
-	fmt.Scanln("Please enter the second number": &b)
-	result := loopMe(a, b)
-	fmt.Println(result)
+	fmt.Print("Введите первое число: ")
+	fmt.Scanln(&a)
+	fmt.Print("Введите второе число: ")
+	fmt.Scanln(&b)
+	result := LoopMe(a, b)
+	fmt.Println("Числа в диапазоне:", result)
 }
 
 // пишем функцию loopMe(), которая принимает на вход два числа (с новой строки),
