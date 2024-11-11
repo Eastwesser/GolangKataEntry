@@ -11,7 +11,7 @@ func BetweenNums(a, b int) string {
 	if a > b {
 		a, b = b, a
 	}
-	for i := a + 1; i < b; i++ {
+	for i := a + 2; i < b; i++ {
 		stringOfNumbers += strconv.Itoa(i) + " "
 	}
 	return stringOfNumbers
