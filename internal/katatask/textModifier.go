@@ -30,9 +30,7 @@ func swapChars(textLine string) string {
 
 	for i := 0; i < len(runes); i++ {
 		if runes[i] == '-' && i > 0 && i < len(runes)-1 {
-			// Меняем местами символы слева и справа от '-'
 			res[len(res)-1], runes[i+1] = runes[i+1], res[len(res)-1]
-			// Не добавляем '-' в результат
 		} else {
 			res = append(res, runes[i])
 		}
