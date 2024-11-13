@@ -1,4 +1,4 @@
-package katatask
+package main
 
 import (
 	"bufio"

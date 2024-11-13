@@ -1,9 +1,10 @@
-package katatask
+package main
 
 import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 	"unicode"
 )
@@ -12,48 +13,88 @@ type Text struct {
 	Content string
 }
 
-func (t *Text) TextModifier() error {
-	fmt.Println("Исходное содержание:", t.Content)
+// A. Функция для удаления лишних пробелов
+func removeSpaces(textLine string) string {
 
-	textMod := strings.ReplaceAll(t.Content, "\n", " ")
-	var result strings.Builder
-
-	for i := 0; i < len(textMod); i++ {
-		switch textMod[i] {
-		case '-':
-			result.WriteByte('~')
-		case '+':
-			result.WriteByte('!')
-		default:
-			if unicode.IsDigit(rune(textMod[i])) {
-				doubledValue := string(textMod[i]) + string(textMod[i])
-				result.WriteString(doubledValue)
-			} else {
-				result.WriteByte(textMod[i])
-			}
-		}
+	for strings.Contains(textLine, "  ") {
+		textLine = strings.ReplaceAll(textLine, "  ", " ")
 	}
 
-	t.Content = strings.Join(strings.Fields(result.String()), " ")
-	fmt.Println("Модифицированное содержание:", t.Content)
-	return nil
+	return textLine
 }
 
-func RunTextModifier() error {
-	text := &Text{}
-	scanner := bufio.NewScanner(os.Stdin)
+// B. Функция для перестановки символов вокруг "-"
+func swapChars(textLine string) string {
+	runes := []rune(textLine)
+	var res []rune
 
-	fmt.Print("Введите текст: ")
-	for scanner.Scan() {
-		text.Content = scanner.Text()
-		err := text.TextModifier()
-		if err != nil {
-			return fmt.Errorf("ошибка при модификации текста: %w", err)
+	for i := 0; i < len(runes); i++ {
+		if runes[i] == '-' && i > 0 && i < len(runes)-1 {
+			res = append(res, runes[i+1], runes[i-1])
+			i++
+		} else {
+			res = append(res, runes[i])
 		}
 	}
 
-	if err := scanner.Err(); err != nil {
-		return fmt.Errorf("ошибка ввода текста: %w", err)
+	return string(res)
+}
+
+// C. Функция для замены "+" на "!"
+func swapPlus(textLine string) string {
+
+	for strings.Contains(textLine, "+") {
+		textLine = strings.ReplaceAll(textLine, "+", "!")
 	}
-	return nil
+
+	return textLine
+}
+
+// D. Функция для удаления лишних пробелов
+func countSum(textLine string) string {
+	var sum int
+	var builder strings.Builder
+
+	for _, char := range textLine {
+		if unicode.IsDigit(char) {
+			digit, _ := strconv.Atoi(string(char))
+			sum += digit
+		} else {
+			builder.WriteRune(char)
+		}
+	}
+
+	if sum > 0 {
+		builder.WriteString(" ")
+		builder.WriteString(strconv.Itoa(sum))
+
+	}
+
+	return builder.String()
+}
+
+func (t *Text) TextModifier() {
+
+	// A
+	t.Content = removeSpaces(t.Content)
+	// B
+	t.Content = swapChars(t.Content)
+	// C
+	t.Content = swapPlus(t.Content)
+	// D
+	t.Content = countSum(t.Content)
+
+	fmt.Println(t.Content)
+}
+
+func main() {
+	text := &Text{}
+	scanner := bufio.NewScanner(os.Stdin)
+	fmt.Print("Введите строку:")
+	if scanner.Scan() {
+		text.Content = scanner.Text()
+		text.TextModifier()
+	} else {
+		fmt.Println("Ошибка ввода:", scanner.Err())
+	}
 }
