@@ -23,15 +23,16 @@ func removeSpaces(textLine string) string {
 	return textLine
 }
 
-// B. Функция для перестановки символов вокруг "-"
+// B. Функция для смены символов вокруг "-" (и удаления "-")
 func swapChars(textLine string) string {
 	runes := []rune(textLine)
 	var res []rune
 
 	for i := 0; i < len(runes); i++ {
 		if runes[i] == '-' && i > 0 && i < len(runes)-1 {
-			res = append(res, runes[i+1], runes[i-1])
-			i++
+			// Меняем местами символы слева и справа от '-'
+			res[len(res)-1], runes[i+1] = runes[i+1], res[len(res)-1]
+			// Не добавляем '-' в результат
 		} else {
 			res = append(res, runes[i])
 		}
@@ -50,7 +51,7 @@ func swapPlus(textLine string) string {
 	return textLine
 }
 
-// D. Функция для удаления лишних пробелов
+// D. Функция для удаления цифр и подсчета их суммы
 func countSum(textLine string) string {
 	var sum int
 	var builder strings.Builder
@@ -90,7 +91,7 @@ func (t *Text) TextModifier() {
 func main() {
 	text := &Text{}
 	scanner := bufio.NewScanner(os.Stdin)
-	fmt.Print("Введите строку:")
+	fmt.Print("Введите строку: ")
 	if scanner.Scan() {
 		text.Content = scanner.Text()
 		text.TextModifier()
