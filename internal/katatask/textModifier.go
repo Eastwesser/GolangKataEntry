@@ -98,35 +98,89 @@
 //	}
 //}
 //
+//
+//package main
+//
+//import "fmt"
+//
+//func sumWord(a, b int) string {
+//	res := a + b
+//
+//	switch res {
+//	case 0:
+//		return "Zero"
+//	case 1:
+//		return "One"
+//	case 2:
+//		return "Two"
+//	case 3:
+//		return "Three"
+//	case 4:
+//		return "Four"
+//	case 5:
+//		return "Five"
+//	case 6:
+//		return "Six"
+//	case 7:
+//		return "Seven"
+//	case 8:
+//		return "Eight"
+//	case 9:
+//		return "Nine"
+//	case 10:
+//		return "Ten"
+//	default:
+//		return "Out of range."
+//	}
+//}
+//
+//func main() {
+//	var a, b int
+//	fmt.Println("Введите два числа (сумма не более 10):")
+//	fmt.Scanln(&a, &b)
+//
+//	// Проверяем, что сумма не превышает 10
+//	if a+b > 10 {
+//		fmt.Println("Сумма превышает 10.")
+//		return
+//	}
+//
+//	fmt.Println("Ваш результат: ", sumWord(a, b))
+//}
 
 package main
 
-import "fmt"
-
-func whichIsBigger(a, b int) string {
-	var biggerNums string
-
-	// a = 10, b = 100
-	if a < b {
-		biggerNums = "Число Б больше"
-	} else if a > b {
-		biggerNums = "Число А больше"
-	} else {
-		biggerNums = "Ваши числа равны!"
-	}
-	//
-
-	return biggerNums
-}
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
-	var a int
-	var b int
+	names := [3]string{"Den", "Ben", "Zen"}
+	fmt.Println(names, len(names))
 
-	fmt.Println("Введите первое число:")
-	fmt.Scanln(&a)
-	fmt.Println("Введите первое число:")
-	fmt.Scanln(&b)
-	res := whichIsBigger(a, b)
-	fmt.Println(res)
+	for i := 0; i < len(names); i++ {
+		fmt.Println(names[i]) // в столбик
+	}
+	sprinty := strings.Join(names[:], " ")
+	fmt.Println(sprinty) // в строчку
+
+	sprinty2 := strings.Join(names[:], ", ")
+	fmt.Println(sprinty2) // в строчку с запятой
+
+	arrayNum := [3][4]int{
+		{1, 2, 3, 4},
+		{5, 6, 7, 8},
+		{9, 10, 11, 12},
+	}
+
+	arrayStr := [3][4]string{
+		{"Quas", "Wex", "Exort", "Ult"},
+		{"Quas", "Wex", "Quas", "Ult"},
+		{"Exort", "Wex", "Exort", "Ult"},
+	}
+
+	for i := 0; i < len(arrayNum); i++ {
+		fmt.Println(arrayNum[i], arrayStr[i])
+	}
 }
