@@ -150,58 +150,121 @@
 //
 //		fmt.Println("Ваш результат: ", sumWord(a, b))
 //	}
+//package main
 //
-// package main
-//
-// import (
-//
+//import (
 //	"fmt"
 //	"strings"
+//)
 //
-// )
+//func main() {
+//	names := [3]string{"Den", "Ben", "Zen"}
+//	fmt.Println(names, len(names))
 //
-//	func main() {
-//		names := [3]string{"Den", "Ben", "Zen"}
-//		fmt.Println(names, len(names))
+//	for i := 0; i < len(names); i++ {
+//		fmt.Println(names[i]) // в столбик
+//	}
+//	sprinty := strings.Join(names[:], " ")
+//	fmt.Println(sprinty) // в строчку
 //
-//		for i := 0; i < len(names); i++ {
-//			fmt.Println(names[i]) // в столбик
-//		}
-//		sprinty := strings.Join(names[:], " ")
-//		fmt.Println(sprinty) // в строчку
+//	sprinty2 := strings.Join(names[:], ", ")
+//	fmt.Println(sprinty2) // в строчку с запятой
 //
-//		sprinty2 := strings.Join(names[:], ", ")
-//		fmt.Println(sprinty2) // в строчку с запятой
+//	arrayNum := [3][4]int{
+//		{1, 2, 3, 4},
+//		{5, 6, 7, 8},
+//		{9, 10, 11, 12},
+//	}
 //
-//		arrayNum := [3][4]int{
-//			{1, 2, 3, 4},
-//			{5, 6, 7, 8},
-//			{9, 10, 11, 12},
-//		}
+//	arrayStr := [3][4]string{
+//		{"Quas", "Wex", "Exort", "Ult"},
+//		{"Quas", "Wex", "Quas", "Ult"},
+//		{"Exort", "Wex", "Exort", "Ult"},
+//	}
 //
-//		arrayStr := [3][4]string{
-//			{"Quas", "Wex", "Exort", "Ult"},
-//			{"Quas", "Wex", "Quas", "Ult"},
-//			{"Exort", "Wex", "Exort", "Ult"},
-//		}
+//	for i := 0; i < len(arrayNum); i++ {
+//		fmt.Println(arrayNum[i], arrayStr[i])
+//	}
+//}
+
+//package main
 //
-//		for i := 0; i < len(arrayNum); i++ {
-//			fmt.Println(arrayNum[i], arrayStr[i])
+//import (
+//	"fmt"
+//)
+//
+//func main() {
+//	var a, b int
+//	fmt.Scan(&a, &b)
+//
+//	for i := a; i <= b; i++ {
+//		if i%2 == 0 {
+//			fmt.Println(i)
 //		}
 //	}
+//}
+
+// Напиши программу, которая принимает от пользователя строку и число N. Программа должна:
+// Если число N чётное: вывести все символы строки в обратном порядке.
+// Если число N нечётное: продублировать каждый символ строки N раз и вывести результат.
+//Пример ввода и вывода
+//Пример 1:
+//Ввод:
+//Введите строку: hello
+//Введите число: 4
+//Вывод:
+//Обратный порядок: olleh
+//Пример 2:
+//Ввод:
+//Введите строку:
+//Введите число: 3
+//Вывод:
+//Дублированная строка: gggooo
+
 package main
 
 import (
 	"fmt"
+	"strings"
 )
 
-func main() {
-	var a, b int
-	fmt.Scan(&a, &b)
+func stringOnum(textLine string, numOne int) string {
+	var res string
 
-	for i := a; i <= b; i++ {
-		if i%2 == 0 {
-			fmt.Println(i)
+	if numOne%2 == 0 {
+		// REVERSE POLARITY
+		for i := len(textLine) - 1; i >= 0; i-- {
+			res += string(textLine[i])
+		}
+
+	} else if numOne%2 != 0 {
+		for _, char := range textLine {
+			res += strings.Repeat(string(char), numOne)
 		}
 	}
+	return res
 }
+
+func main() {
+	var a string
+	var b int
+
+	fmt.Println("Введите строку: ")
+	fmt.Scan(&a)
+	fmt.Println("Введите число: ")
+	fmt.Scan(&b)
+
+	res := stringOnum(a, b)
+	fmt.Println(res)
+	s := "привет"
+	r := []rune(s)
+	fmt.Println(string(r)) // [1087 1088 1080 1074 1077 1090] если без string
+}
+
+//Задача на инкремент
+//Напишем программу, которая:
+//
+//Читает строку и число.
+//Если число чётное, добавляет в результат символы строки с чётными индексами.
+//Если число нечётное, добавляет символы строки с нечётными индексами.
+//
