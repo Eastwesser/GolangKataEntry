@@ -267,4 +267,104 @@ func main() {
 //Читает строку и число.
 //Если число чётное, добавляет в результат символы строки с чётными индексами.
 //Если число нечётное, добавляет символы строки с нечётными индексами.
+
+//package main
 //
+//import (
+//"fmt"
+//"strings"
+//)
+//
+//func baseTemplateForFunction(a, b string) string {
+//	// Логика функции
+//	return ""
+//}
+//
+//func main() {
+//	var a, b string
+//
+//	fmt.Println("Введите первую строку: ")
+//	fmt.Scanln(&a)
+//	fmt.Println("Введите вторую строку: ")
+//	fmt.Scanln(&b)
+//
+//	res := baseTemplateForFunction(a, b)
+//	fmt.Println("Результат:", res)
+//}
+
+//Поменять регистр строки
+//На вход подаётся строка, верни её в верхнем регистре.
+func toUpperCase(s string) string {
+	return strings.ToUpper(s)
+}
+
+//Подсчитать количество букв "а" в строке
+//На вход подаётся строка, подсчитай, сколько раз встречается символ "а".
+func countCharA(s string) int {
+	count := 0
+
+	for _, r := range s {
+		if r == 'а' || r == 'a' {
+			count++
+		}
+	}
+	return count
+}
+
+//Разбить строку на слова
+//На вход подаётся строка, разделённая пробелами. Верни список слов.
+func splitIntoWords(s string) []string {
+	return strings.Fields(s)
+}
+
+//Соединить слова в строку через запятую
+//На вход подаётся массив строк. Верни одну строку, где слова соединены запятыми.
+func joinWithCommas(words []string) string {
+	return strings.Join(words, ",")
+}
+
+//Найти индекс первого вхождения подстроки
+//На вход подаётся строка и подстрока. Верни индекс первого вхождения подстроки.
+func findSubstring(s, substr string) int {
+	return strings.Index(s, substr)
+}
+
+//Развернуть строку
+//На вход подаётся строка. Верни её в обратном порядке.
+func reverseString(s string) string {
+	runes := []rune(s)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+	return string(runes)
+}
+
+//Проверить, является ли строка палиндромом
+//На вход подаётся строка. Проверь, читается ли она одинаково с обеих сторон.
+func isPalindrome(s string) bool {
+	runes := []rune(s)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		if runes[i] != runes[j] {
+			return false
+		}
+	}
+	return true
+}
+
+//Удалить все пробелы из строки
+//На вход подаётся строка. Удали из неё все пробелы.
+func removeSpaces(s string) string {
+	return strings.ReplaceAll(s, " ", "")
+}
+
+//Заменить все буквы "о" на "0"
+//На вход подаётся строка. Заменить все буквы "о" на цифру "0".
+func replaceOWithZero(s string) string {
+	return strings.ReplaceAll(s, "о", "0")
+}
+
+//Создать строку из повторяющихся символов
+//На вход подаётся символ и количество повторений. Верни строку с этим символом, повторённым нужное количество раз.
+func repeatChar(c rune, count int) string {
+	return strings.Repeat(string(c), count)
+}
