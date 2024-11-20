@@ -1,27 +1,34 @@
-package kataTask
+package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 )
 
-type Text struct {
-	Content string
-}
+func compareNums(num1, num2 int) string {
 
-func (t *Text) TextModifier() {
-	fmt.Println(t.Content)
-	// CONTINUE THE CODE HERE
+	if num1 > num2 {
+		return "Первое число больше второго"
+	} else if num1 < num2 {
+		return "Второе число больше первого"
+	} else {
+		return "Оба числа равны"
+	}
 
 }
 
 func main() {
-	text := &Text{}
-	scanner := bufio.NewScanner(os.Stdin)
-	fmt.Print("Введите строку:")
-	for scanner.Scan() {
-		text.Content = scanner.Text()
-		text.TextModifier()
-	}
+	var a, b int
+
+	fmt.Println("Введите первое число: ")
+	fmt.Scan(&a)
+	fmt.Println("Введите второе число: ")
+	fmt.Scan(&b)
+	fmt.Println(compareNums(a, b))
 }
+
+// Необходимо написать метод, который принимает два числа в качестве
+// аргументов и возвращает строку с информацией о том, какое число больше - первое,
+// второе или они равны.
+
+// Затем в main считать из консоли два числа от пользователя и вызвать метод
+// с этими значениями и вывести результат в консоль.
